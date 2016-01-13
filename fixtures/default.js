@@ -71,7 +71,10 @@ module.exports = _.merge({
             /*
              * You should update this section with some test input for testing your module
              */
-            input: {}
+            input: {
+                method: 'GET',
+                path: 'localhost'
+            }
         }
     }
 }, env);

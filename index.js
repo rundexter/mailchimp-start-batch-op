@@ -48,7 +48,7 @@ module.exports = {
             method: 'POST',
             baseUrl: 'https://' + auth.server + '.api.mailchimp.com/3.0/',
             uri: '/batches',
-            body: inputs,
+            body: { operations: [inputs] },
             json: true,
             auth: {
                 username: 'api_key',
