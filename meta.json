@@ -2,25 +2,54 @@
  * Metadata describing the module operation
  */
 {
-    //Required. Inputs the module expects.
     "inputs": [
-        //e.g.
-        /*
         {
-            "id": "from",
-            "title":"From"
+            "id": "method",
+            "title": "Method"
+        },
+        {
+            "id": "path",
+            "title": "Path"
+        },
+        {
+            "id": "params",
+            "title": "Parameters"
+        },
+        {
+            "id": "body",
+            "title": "Body"
+        },
+        {
+            "id": "operation_id",
+            "title": "Operation ID"
         }
-        */
     ],
-    //Required. Outputs the module emits.
     "outputs": [
-      //e.g.
-      /*
         {
-            "id": "from",
-            "title":"From"
+            "id": "id",
+            "title": "ID"
+        },
+        {
+            "id": "status",
+            "title": "Status"
+        },
+        {
+            "id": "errored_operations",
+            "title": "Errors"
+        },
+        {
+            "id": "submitted_at",
+            "title": "Submitted At"
+        },
+        {
+            "id": "completed_at",
+            "title": "Completed At"
+        },
+        {
+            "id": "response_body_url",
+            "title": "URL"
         }
-      */
     ],
-    "title": "Mailchimp - Start Batch Operation" /* Required.A display name for the module */
+    "icon": "dex-mailchimp",
+    "title": "Mailchimp - Start Batch Operation"
 }
