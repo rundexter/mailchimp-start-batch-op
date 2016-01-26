@@ -50,6 +50,9 @@
             "title": "URL"
         }
     ],
+    "providers": [{
+        "name": "mailchimp "
+    }],
     "icon": "dex-mailchimp",
     "title": "Mailchimp - Start Batch Operation"
 }

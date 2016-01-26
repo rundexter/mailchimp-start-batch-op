@@ -17,17 +17,6 @@ var request = require('request'),
     };
 
 module.exports = {
-    authOptions: function (dexter) {
-        if (!dexter.environment('mailchimp_api_key') || !dexter.environment('server')) {
-            this.fail('A [mailchimp_api_key] and [server] environment variables are required for this module');
-            return false;
-        } else {
-            return {
-                api_key: dexter.environment('mailchimp_api_key'),
-                server: dexter.environment('server')
-            }
-        }
-    },
     /**
      * The main entry point for the Dexter module
      *
@@ -35,24 +24,25 @@ module.exports = {
      * @param {AppData} dexter Container for all data used in this workflow.
      */
     run: function(step, dexter) {
-        var auth = this.authOptions(dexter),
+        var accessToken = dexter.provider('mailchimp').credentials('access_token'),
+            server = dexter.environment('mailchimp_server'),
             inputs = util.pickInputs(step, pickInputs),
             validateErrors = util.checkValidateErrors(inputs, pickInputs);
 
-        if (!auth) return;
+        if (!server)
+            return this.fail('A [mailchimp_server] environment need for this module.');
 
         if (validateErrors)
             return this.fail(validateErrors);
 
         request({
             method: 'POST',
-            baseUrl: 'https://' + auth.server + '.api.mailchimp.com/3.0/',
+            baseUrl: 'https://' + server + '.api.mailchimp.com/3.0/',
             uri: '/batches',
             body: { operations: [inputs] },
             json: true,
             auth: {
-                username: 'api_key',
-                password: auth.api_key
+                bearer: accessToken
             }
         },
         function (error, response, body) {
